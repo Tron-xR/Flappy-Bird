@@ -1053,8 +1053,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pipe: {fileID: 5793574158892693973, guid: 575ff9ea6ac1e054baebec8108d7964b, type: 3}
-  range: 2
-  maxTimer: 1.5
+  verticalRange: 1.65
+  spawnInterval: 2.15
+  maxHeightChange: 0.9
 --- !u!1 &1376952262
 GameObject:
   m_ObjectHideFlags: 0

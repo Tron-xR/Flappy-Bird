@@ -3,30 +3,38 @@ using UnityEngine;
 public class PipeSpawn : MonoBehaviour
 {
     [SerializeField] private GameObject pipe;
-    [SerializeField] private float range=5f;
-    [SerializeField] private float maxTimer = 2f;
+    [SerializeField] private float verticalRange = 1.65f;
+    [SerializeField] private float spawnInterval = 2.15f;
+    [SerializeField] private float maxHeightChange = 0.9f;
 
     private float timer;
+    private float lastSpawnY;
+
+    private void Start()
+    {
+        lastSpawnY = transform.position.y;
+        PipeSpawnBehaviour();
+    }
 
     private void Update()
     {
-
-        if (timer > maxTimer)
+        timer += Time.deltaTime;
+        if (timer >= spawnInterval)
         {
             PipeSpawnBehaviour();
             timer = 0;
-
         }
-        timer += Time.deltaTime;
     }
-
-    
 
     private void PipeSpawnBehaviour()
     {
-        Vector3 pipePos= transform.position+new Vector3 (0, Random.Range(-range, range),0);
-        GameObject spawnedPipe= Instantiate(pipe,pipePos,Quaternion.identity);
+        float targetY = Random.Range(-verticalRange, verticalRange);
+        float spawnY = Mathf.Clamp(targetY, lastSpawnY - maxHeightChange, lastSpawnY + maxHeightChange);
+        lastSpawnY = spawnY;
 
-        Object.Destroy(spawnedPipe, 5f);
+        Vector3 pipePos = transform.position + new Vector3(0, spawnY, 0);
+        GameObject spawnedPipe = Instantiate(pipe, pipePos, Quaternion.identity);
+
+        Object.Destroy(spawnedPipe, 8f);
     }
 }
