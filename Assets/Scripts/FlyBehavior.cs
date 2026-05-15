@@ -19,6 +19,7 @@ public class FlyBehavior : MonoBehaviour
         if (Mouse.current.leftButton.wasPressedThisFrame || Keyboard.current.spaceKey.wasPressedThisFrame)
         {
             rb.linearVelocity = Vector2.up * speed;
+            GameAudio.GetOrCreate().PlayFlap();
         }
         transform.rotation = Quaternion.Euler(0, 0, rb.linearVelocity.y * rotationAngle);
     }
