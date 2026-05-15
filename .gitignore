@@ -365,3 +365,9 @@ UserSettings/
 *.csproj
 *.sln
 .vsconfig
+Library/
+Temp/
+Logs/
+Build/
+Builds/
+Obj/
